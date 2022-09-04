@@ -1,9 +1,9 @@
 use std::error::Error;
 
 use chrono::{DateTime, Local};
-use day::*;
+use progress::*;
 
-pub mod day;
+pub mod progress;
 
 #[derive(Debug)]
 pub struct Args {
@@ -43,8 +43,9 @@ pub fn print_all(time: DateTime<Local>) -> Result<(), Box<dyn Error>> {
     println!("Day Progress: {:.2}%", day_progress);
     println!(
         "Week Progress: {:.2}%",
-        calc_week(&time, FirstDay::Sunday, false)
+        calc_week(&time, FirstDay::Sunday, true)
     );
+    println!("Month Progress: {:.2}%", calc_month(&time));
     println!("Year Progress: {:.0}%", calc_year(&time));
     Ok(())
 }
