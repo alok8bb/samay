@@ -1,7 +1,7 @@
 use std::error::Error;
 
 use chrono::{DateTime, Local};
-use day::calc_day;
+use day::*;
 
 pub mod day;
 
@@ -41,5 +41,10 @@ pub fn run(args: Args) -> Result<(), Box<dyn Error>> {
 pub fn print_all(time: DateTime<Local>) -> Result<(), Box<dyn Error>> {
     let day_progress = calc_day(&time);
     println!("Day Progress: {:.2}%", day_progress);
+    println!(
+        "Week Progress: {:.2}%",
+        calc_week(&time, FirstDay::Sunday, false)
+    );
+    println!("Year Progress: {:.0}%", calc_year(&time));
     Ok(())
 }
